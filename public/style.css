@@ -1,0 +1,52 @@
+:root{--bg:#0b1118;--panel:#111a24;--panel2:#0e151d;--line:#1d2936;--text:#e8eef5;--muted:#8a99aa;
+--red:#ff5d6c;--amber:#ffb84d;--green:#3ddc97;--blue:#5b8cff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 "Segoe UI",system-ui,sans-serif}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-weight:700;color:#06121a;background:linear-gradient(135deg,#3ddc97,#5b8cff)}
+h1{font-size:19px;margin:0}.brand p{margin:0;color:var(--muted);font-size:12px}
+.badge{border:1px solid #1f5c46;background:#0f2a22;color:var(--green);padding:5px 14px;border-radius:999px;font-size:12px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:7px}
+.layout{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;padding:28px 32px;max-width:1400px;margin:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px;min-width:0}
+h2{font-size:16px;margin:0}h3{font-size:16px;margin:24px 0 0}.mt{margin-top:26px}
+.sub{color:var(--muted);font-size:12.5px;margin:4px 0 16px}
+.scan-row{display:flex;gap:14px}
+textarea{flex:1;resize:vertical;min-height:44px;max-height:220px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:12px 16px;font:inherit}
+textarea:focus{outline:2px solid var(--blue);outline-offset:-1px}
+button{border:0;border-radius:10px;padding:0 24px;font-weight:600;color:#06121a;cursor:pointer;background:linear-gradient(135deg,#3ddc97,#5b8cff)}
+button:disabled{opacity:.6;cursor:wait}
+.verdict{display:flex;gap:20px;align-items:center;margin-top:18px;padding:18px;border-radius:12px;border:1px solid}
+.verdict.Phishing{background:#1f1013;border-color:#5a2029}.verdict.Suspicious{background:#1f1a0f;border-color:#5a4520}.verdict.Safe{background:#0f1f18;border-color:#1f5c46}
+.ring{--c:var(--red);width:76px;height:76px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700;
+background:radial-gradient(closest-side,var(--panel) 76%,transparent 78%),conic-gradient(var(--c) calc(var(--p)*1%),#2a3441 0)}
+.verdict h4{margin:0 0 4px;font-size:18px}.verdict p{margin:0;color:var(--muted);word-break:break-all}
+.mono{font-family:Consolas,monospace}
+.Phishing h4,.Phishing .ring{color:var(--red)}.Suspicious h4{color:var(--amber)}.Safe h4{color:var(--green)}
+.Suspicious .ring{--c:var(--amber);color:var(--amber)}.Safe .ring{--c:var(--green);color:var(--green)}
+.signals{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sig{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;position:relative;padding-left:30px}
+.sig::before{content:"";position:absolute;left:12px;top:17px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.sig.bad::before{background:var(--red)}.sig.warn::before{background:var(--amber)}.sig.good::before{background:var(--green)}
+.sig b{display:block}.sig span{color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat b{display:block;font-size:30px}.stat span{color:var(--muted)}
+.red{color:var(--red)}.amber{color:var(--amber)}.green{color:var(--green)}.blue{color:var(--blue)}
+table{width:100%;border-collapse:collapse;margin-top:10px;table-layout:fixed}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:12px;padding:8px 6px}
+td{padding:10px 6px;border-top:1px solid var(--line);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+td:first-child{font-family:Consolas,monospace;font-size:12.5px}
+th:nth-child(2){width:96px}th:nth-child(3){width:52px}
+.pill{padding:3px 10px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid}
+.pill.Phishing{color:var(--red);background:#2a1217;border-color:#5a2029}.pill.Suspicious{color:var(--amber);background:#2a2010;border-color:#5a4520}.pill.Safe{color:var(--green);background:#0f2a22;border-color:#1f5c46}
+.note{margin-top:12px;padding:9px 14px;border-radius:8px;background:#1a2230;border:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.err{background:#2a1217;border-color:#5a2029;color:#ffb3bb}
+.muted{color:var(--muted)}
+.linkrow{margin-top:8px;font-size:12.5px;display:flex;gap:10px;align-items:center}.linkrow code{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:900px){.layout{grid-template-columns:1fr;padding:16px}.signals{grid-template-columns:1fr}.topbar{padding:14px 16px;flex-wrap:wrap;gap:10px}.scan-row{flex-direction:column}button{height:44px}}
+
+.tabs{display:flex;gap:8px;margin:12px 0 10px}
+.tab{padding:7px 18px;background:var(--panel2);color:var(--muted);border:1px solid var(--line);font-weight:500}
+.tab.active{color:#06121a;border-color:transparent;background:linear-gradient(135deg,#3ddc97,#5b8cff)}

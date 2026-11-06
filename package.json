@@ -1,0 +1,15 @@
+{
+  "name": "pishguard",
+  "version": "1.0.0",
+  "description": "PishGuard - Phishing & Malicious URL Scanner (Netlify edition)",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node --env-file=.env dev-server.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

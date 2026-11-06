@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PishGuard</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">PG</div>
+    <div>
+      <h1>PishGuard</h1>
+      <p>Phishing &amp; Malicious URL Scanner</p>
+    </div>
+  </div>
+  <div class="badge"><span class="dot"></span>Engine active &mdash; Heuristics + VirusTotal</div>
+</header>
+
+<main class="layout">
+  <section class="card">
+    <h2 id="scanTitle">Scan a URL</h2>
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab active" data-mode="url">URL</button>
+      <button type="button" class="tab" data-mode="email">Email</button>
+      <button type="button" class="tab" data-mode="hash">File Hash</button>
+    </div>
+    <p class="sub" id="scanHint">Paste a link to check it for phishing indicators</p>
+    <form id="scanForm" class="scan-row">
+      <textarea id="scanInput" rows="1" maxlength="20000" placeholder="https://example.com/login" aria-label="Input to scan"></textarea>
+      <button id="scanBtn" type="submit">Scan Now</button>
+    </form>
+    <div id="notices"></div>
+    <div id="result"></div>
+    <div id="whyWrap" hidden>
+      <h3>Why this was flagged</h3>
+      <p class="sub">Signals used by the detection engine</p>
+      <div id="signals" class="signals"></div>
+      <div id="links"></div>
+    </div>
+  </section>
+
+  <aside class="card">
+    <h2>Scan Summary</h2>
+    <p class="sub">All scans saved in the database</p>
+    <div class="stats">
+      <div class="stat"><b id="sPhishing" class="red">–</b><span>Phishing Detected</span></div>
+      <div class="stat"><b id="sSuspicious" class="amber">–</b><span>Suspicious</span></div>
+      <div class="stat"><b id="sSafe" class="green">–</b><span>Safe</span></div>
+      <div class="stat"><b id="sTotal" class="blue">–</b><span>Total Scanned</span></div>
+    </div>
+    <h2 class="mt">Recent Scans</h2>
+    <div id="dbNotice"></div>
+    <table>
+      <thead><tr><th>URL</th><th>Verdict</th><th>Risk</th></tr></thead>
+      <tbody id="recent"><tr><td colspan="3" class="muted">No scans yet</td></tr></tbody>
+    </table>
+  </aside>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
