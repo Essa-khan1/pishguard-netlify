@@ -43,14 +43,14 @@
 
   <aside class="card">
     <h2>Scan Summary</h2>
-    <p class="sub">All scans saved in the database</p>
+    <p class="sub">Your scans &mdash; private to this browser</p>
     <div class="stats">
       <div class="stat"><b id="sPhishing" class="red">–</b><span>Phishing Detected</span></div>
       <div class="stat"><b id="sSuspicious" class="amber">–</b><span>Suspicious</span></div>
       <div class="stat"><b id="sSafe" class="green">–</b><span>Safe</span></div>
       <div class="stat"><b id="sTotal" class="blue">–</b><span>Total Scanned</span></div>
     </div>
-    <h2 class="mt">Recent Scans</h2>
+    <div class="head-row mt"><h2>Recent Scans</h2><button type="button" id="clearBtn" class="ghost">Clear history</button></div>
     <div id="dbNotice"></div>
     <table>
       <thead><tr><th>URL</th><th>Verdict</th><th>Risk</th></tr></thead>

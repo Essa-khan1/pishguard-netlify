@@ -8,12 +8,25 @@ function el(tag, cls, text) {
 }
 const $ = (id) => document.getElementById(id);
 
+// Anonymous per-browser ID: keeps each visitor's history separate and private.
+function makeId() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return "id-" + Math.random().toString(16).slice(2) + Date.now().toString(16) + Math.random().toString(16).slice(2);
+}
+let clientId;
+try { clientId = localStorage.getItem("pishguard_client"); } catch (e) { clientId = null; }
+if (!clientId || clientId.length < 16) {
+  clientId = makeId();
+  try { localStorage.setItem("pishguard_client", clientId); } catch (e) { /* private mode: lasts for this visit */ }
+}
+const authHeaders = (extra) => Object.assign({ "X-Client-Id": clientId }, extra || {});
+
 function note(msg, isErr) { $("notices").appendChild(el("div", "note" + (isErr ? " err" : ""), msg)); }
 function pill(v) { return el("span", "pill " + v, v); }
 
 async function loadDashboard() {
   try {
-    const r = await fetch("/api/dashboard");
+    const r = await fetch("/api/dashboard", { headers: authHeaders() });
     const d = await r.json();
     $("dbNotice").textContent = "";
     if (!d.db_ok) {
@@ -120,7 +133,7 @@ $("scanForm").addEventListener("submit", async (ev) => {
   btn.disabled = true; btn.textContent = "Scanning…";
   try {
     const r = await fetch("/api/scan", {
-      method: "POST", headers: { "Content-Type": "application/json" },
+      method: "POST", headers: authHeaders({ "Content-Type": "application/json" }),
       body: JSON.stringify({ input: value, mode: mode }),
     });
     const d = await r.json();
@@ -133,3 +146,15 @@ $("scanForm").addEventListener("submit", async (ev) => {
   }
 });
 loadDashboard();
+
+$("clearBtn").addEventListener("click", async () => {
+  if (!confirm("Delete your scan history? This cannot be undone.")) return;
+  try {
+    const r = await fetch("/api/clear", { method: "POST", headers: authHeaders() });
+    if (!r.ok) { const d = await r.json(); note(d.error || "Could not clear history.", true); return; }
+    $("result").textContent = ""; $("whyWrap").hidden = true;
+  } catch (e) {
+    note("Could not reach the server.", true); return;
+  }
+  loadDashboard();
+});

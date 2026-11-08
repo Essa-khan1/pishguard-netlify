@@ -50,3 +50,8 @@ th:nth-child(2){width:96px}th:nth-child(3){width:52px}
 .tabs{display:flex;gap:8px;margin:12px 0 10px}
 .tab{padding:7px 18px;background:var(--panel2);color:var(--muted);border:1px solid var(--line);font-weight:500}
 .tab.active{color:#06121a;border-color:transparent;background:linear-gradient(135deg,#3ddc97,#5b8cff)}
+
+.head-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.head-row.mt{margin-top:26px}
+.ghost{padding:6px 14px;font-size:12px;background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:500}
+.ghost:hover{color:var(--red);border-color:#5a2029}
